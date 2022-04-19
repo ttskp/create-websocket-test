@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <label for="protocol-select">Protocol:</label>
+    <select id="protocol-select">
+        <option value="ws">ws</option>
+        <option value="wss">wss</option>
+    </select>
+    <br><br>
+    <label for="port-input">Port:</label>
+    <input type="text" id="port-input" value="80"><br><br>
+
+    <button onclick="connect()">connect</button><br><br>
+
+    <div id="response-field"></div>
+
+    <!--
+    <input type="file" onchange="previewFile()"><br><br><br>
+    <img src="" height="2100" alt="Image preview...">
+    -->
+
+    <script src="main.js"></script>
+</body>
+</html>
