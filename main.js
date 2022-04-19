@@ -1,38 +1,45 @@
 function connect() {
-    const protocolSelect = document.getElementById("protocol-select");
-    const portInput = document.getElementById("port-input");
-    const url = protocolSelect.value + "://127.0.0.1:" + portInput.value;
+    try {
+        const protocolSelect = document.getElementById("protocol-select");
+        const portInput = document.getElementById("port-input");
+        const url = protocolSelect.value + "://127.0.0.1:" + portInput.value;
 
-    var connection = new WebSocket(url);
-    // When the connection is open, send some data to the server
-    connection.onopen = function () {
-        connection.send('Ping'); // Send the message 'Ping' to the server
-    };
+        var connection = new WebSocket(url);
+        // When the connection is open, send some data to the server
+        connection.onopen = function () {
+            connection.send('Ping'); // Send the message 'Ping' to the server
+        };
 
-    // Log errors
-    connection.onerror = function (error) {
-        console.log('WebSocket Error ' + error);
-		const responseField = document.getElementById("response-field");
-        responseField.innerText += "Error: " + error + "\n";
-    };
+        // Log errors
+        connection.onerror = function (error) {
+            console.log('WebSocket Error ' + error);
+            const responseField = document.getElementById("response-field");
+            responseField.innerText += "Error: " + error + "\n";
+        };
 
-    // Log messages from the server
-    connection.onmessage = function (e) {
+        // Log messages from the server
+        connection.onmessage = function (e) {
 
+            const responseField = document.getElementById("response-field");
+            responseField.innerText += e.data + "\n";
+
+            // const preview = document.querySelector('img');
+            //        preview.src = "data:image/png;base64," + e.data;
+
+            // const reader = new FileReader();
+            // reader.addEventListener("load", function () {
+            //     // convert image file to base64 string
+            //     preview.src = reader.result;
+            // }, false);
+            //
+            // reader.readAsDataURL(e.data);
+        };
+    }
+    catch (e) {
+        console.error(e);
         const responseField = document.getElementById("response-field");
-        responseField.innerText += e.data + "\n";
-
-        // const preview = document.querySelector('img');
-//        preview.src = "data:image/png;base64," + e.data;
-
-        // const reader = new FileReader();
-        // reader.addEventListener("load", function () {
-        //     // convert image file to base64 string
-        //     preview.src = reader.result;
-        // }, false);
-        //
-        // reader.readAsDataURL(e.data);
-    };
+        responseField.innerText += "Error: " + e + "\n";
+    }
 }
 
 function previewFile() {
