@@ -12,6 +12,8 @@ function connect() {
     // Log errors
     connection.onerror = function (error) {
         console.log('WebSocket Error ' + error);
+		const responseField = document.getElementById("response-field");
+        responseField.innerText += "Error: " + error + "\n";
     };
 
     // Log messages from the server
