@@ -16,19 +16,20 @@ function connect() {
 
     // Log messages from the server
     connection.onmessage = function (e) {
-        const preview = document.querySelector('img');
+
+        const responseField = document.getElementById("response-field");
+        responseField.innerText += e.data + "\n";
+
+        // const preview = document.querySelector('img');
 //        preview.src = "data:image/png;base64," + e.data;
 
-        // const responseField = document.getElementById("response-field");
-        // responseField.innerText += e.data + "\n";
-
-        const reader = new FileReader();
-        reader.addEventListener("load", function () {
-            // convert image file to base64 string
-            preview.src = reader.result;
-        }, false);
-
-        reader.readAsDataURL(e.data);
+        // const reader = new FileReader();
+        // reader.addEventListener("load", function () {
+        //     // convert image file to base64 string
+        //     preview.src = reader.result;
+        // }, false);
+        //
+        // reader.readAsDataURL(e.data);
     };
 }
 
